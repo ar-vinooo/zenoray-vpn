@@ -1,0 +1,42 @@
+# Node & Build
+node_modules/
+dist/
+dist-ssr/
+dist_electron/
+*.local
+
+# Binaries (Bundled separately)
+bin/xray
+bin/tun2socks
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor & System
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.eslintcache
+
+# macOS specific
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# AI / Assistant
+.gemini/
+.claude/
+.agents/
