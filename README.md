@@ -1,37 +1,70 @@
-# ZenoRay (ZenoVPN)
+# ⚡️ ZenoRay VPN
 
-A premium Xray client UI designed for macOS, optimized for "Bug" (SNI/Host) connection methods.
+**ZenoRay** is a premium, high-performance Xray client for macOS. Designed with a state-of-the-art interface and optimized for "Bug" (SNI/Host) connection methods, it provides a seamless and secure tunneling experience.
 
-## Features
+![ZenoRay Banner](https://raw.githubusercontent.com/ar-vinooo/zenoray-vpn/main/build/icon.png)
 
-- **Modern UI**: Dark mode with glassmorphism effects.
-- **Bug Integration**: Easy Host/SNI configuration for VLESS/VMESS.
-- **Real-time Stats**: Connection status and throughput monitoring.
-- **Method Selector**: Support for WS, TLS, and gRPC.
+## ✨ Features
 
-## How to use
+- 💎 **Premium Interface**: A stunning macOS-native inspired UI with glassmorphism, dynamic gradients, and smooth animations using Framer Motion.
+- 🧙 **Setup Wizard**: An intelligent onboarder that checks system dependencies and configures permissions automatically.
+- 📦 **Bundled Binaries**: No more manual installations. `xray-core` and `tun2socks` are bundled directly within the app.
+- 🛡️ **TUN Mode Support**: Full system-level routing with automatic `sudoers` configuration for a password-less experience.
+- 📊 **Real-time Monitoring**: Track your download/upload speeds and connection uptime with a precise dashboard.
+- 🐜 **Advanced Bug Tunneling**: Deep integration for Host/SNI "Bug" configuration (VLESS/VMESS) over WS, gRPC, and TLS.
+- 🌓 **Themes & Accents**: Fully customizable Dark Mode and accent colors to match your macOS setup.
 
-1. **Run UI**:
-   ```bash
-   npm install
-   npm run dev
-   ```
-2. **Infrastructure**:
-   To connect this UI to a real Xray engine on your Mac:
-   - Install Xray via Homebrew: `brew install xray`
-   - Use the generated config (visible in the app console) and save it to `config.json`.
-   - Run `xray -c config.json`.
+## 🚀 Quick Start (Development)
 
-## Configuration for "Bug"
+Ensure you have [Node.js](https://nodejs.org/) installed, then:
 
-- **Host Bug**: Used in WebSocket (WS) headers. Set "Bug" to your host (e.g., `v.whatsapp.net`).
-- **SNI Bug**: Used in TLS Server Name Indication.
+```bash
+# Clone the repository
+git clone https://github.com/ar-vinooo/zenoray-vpn.git
+cd zenoray-vpn
 
-## Technical Stack
+# Install dependencies
+npm install
 
-- **Framework**: Vite + React
-- **Icons**: Lucide React
-- **Animations**: Framer Motion
-- **Styling**: Vanilla CSS (Custom Design System)
+# Setup binaries (Copy your local binaries for dev testing)
+mkdir -p bin
+cp $(which xray) bin/
+cp $(which tun2socks) bin/
 
-Designed with ❤️ for premium performance.
+# Launch the app
+npm run electron
+```
+
+## 🛠 Technical Stack
+
+- **Runtime**: [Electron](https://www.electronjs.org/)
+- **Frontend**: [React 19](https://react.dev/) + [Vite 7](https://vitejs.dev/)
+- **Logic**: Node.js & Shell Scripting
+- **Styling**: Vanilla CSS (Custom tokens & Design System)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+
+## 📁 Project Structure
+
+```text
+├── bin/                # Bundled system binaries (xray, tun2socks)
+├── build/              # Build assets and icons
+├── electron-main.cjs   # Main process (System logic & VPN control)
+├── preload.cjs         # IPC Bridge
+├── src/
+│   ├── components/     # UI Components (Setup, Sidebar, Panel)
+│   ├── App.jsx         # Main Layout & State management
+│   └── index.css       # Core Design System
+└── package.json        # Build & Dependency config
+```
+
+## 🔐 Security & Permissions
+
+ZenoRay uses a one-time `osascript` authorization to add targeted binary paths to `/etc/sudoers.d/zenoray`. This ensures:
+
+1. **Security**: We only whitelist specific commands for the current user.
+2. **UX**: No more annoying password prompts when switching TUN mode on/off.
+
+---
+
+Designed with ❤️ by **ZenoRay Security Lab** • Project Arvino.
